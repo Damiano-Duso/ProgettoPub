@@ -29,7 +29,12 @@ public class ClientHandler implements Runnable {
                     handleGetRow(input, out);
                 } else if (input.startsWith("GETCOLUMN")) {
                     handleGetColumn(input, out);
-                } else if (input.startsWith("FIND")) {
+                } 
+                else if (input.startsWith("GETALL")) {
+                    handleGetAll(input, out);
+                }
+                
+                else if (input.startsWith("FIND")) {
                     handleFind(input, out);
                 }
                 else if (input.startsWith("HELP")) {
@@ -66,6 +71,20 @@ public class ClientHandler implements Runnable {
         out.flush();
     }
 
+    private void handleGetAll(String input, BufferedWriter out) throws IOException {
+        try {
+            out.write("Tutte le righe: \r\n");
+            for (String[] row : Server.righe) {
+                for (int i = 0; i < row.length; i++) {
+                    out.write(Server.categorie[i] + ": " + row[i] + " \r\n");
+                }
+                out.write("--- \r\n");
+            }
+        } catch (Exception e) {
+            out.write("Errore nel comando GET_ALL. \r\n");
+        }
+        out.flush();
+    }
     private void handleGetColumn(String input, BufferedWriter out) throws IOException {
         try {
             String colName = input.substring("GET_COLUMN ".length()).trim();

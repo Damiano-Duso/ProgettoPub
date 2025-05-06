@@ -4,9 +4,9 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class Server {
-    private static final int porta = 8060;
-    private static final String fileCSV = "PubECircolari\\src\\Mappa-dei-pub-circoli-locali-in-Italia.csv";
-    public static List<String[]> righe = new ArrayList<>();
+    private static final int porta = 8069; 
+    private static final String fileCSV = "Mappa-dei-pub-circoli-locali-in-Italia.csv"; 
+    public static List<String[]> righe = new ArrayList<>(); 
     public static String[] categorie;
 
     public static void main(String[] args) {
@@ -23,6 +23,7 @@ public class Server {
             e.printStackTrace();
         }
     }
+
 
     public static void loadCsv() {
         try (BufferedReader br = new BufferedReader(new FileReader(fileCSV))) {
